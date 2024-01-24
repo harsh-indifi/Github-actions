@@ -31,7 +31,7 @@ jobs:
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
           body=$(gh pr view ${{ github.event.pull_request.number }} --json body -q .body)
-          gh pr create --base demo --head staging --title "Merge changes from staging to demo: $title" --body "$body"
+          gh pr create --base demo --head staging_cep --title "Merge changes from staging to demo: $title" --body "$body"
 
 
 #      - name: Create PR to Preprod
