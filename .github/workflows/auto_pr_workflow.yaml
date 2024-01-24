@@ -9,6 +9,9 @@ jobs:
   auto-prs:
     runs-on: ubuntu-latest
 
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
       - name: Check out code
         uses: actions/checkout@main
