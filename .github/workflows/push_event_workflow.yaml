@@ -23,7 +23,7 @@ jobs:
         uses: actions/set-up-python@v4
 
       - name: Install Dependencies
-        uses: python -m pip install coverage .
+        run: python -m pip install coverage .
 
       - name: Run tests
         run: FLASK_ENV=test coverage run -m unittest test.test_suite
