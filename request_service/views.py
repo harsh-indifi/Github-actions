@@ -17,14 +17,15 @@ class Test(MethodView):
 
 
 class OperationView(MethodView):
-
     def get(self):
         operation = Operations()
         operation.create_extension()
         operation.create_table(APPLICATIONS_TABLE, APPLICATIONS_TABLE_COLUMNS)
         operation.insert_into_table(APPLICATIONS_TABLE, applications_data)
+        result = operation.fetch()
+        operation.drop_table(APPLICATIONS_TABLE)
         operation.close_connection()
-        return jsonify({'view': 'operations'})
+        return jsonify({'success': True, 'requestId': result[0]['requestId']})
 
 
 class CalculationView(MethodView):
