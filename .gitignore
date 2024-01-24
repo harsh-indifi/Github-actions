@@ -1,0 +1,9 @@
+htmlcov/
+.coverage
+.coverage.*
+config/settings/local.py
+config/settings/prod.py
+config/settings/test.py
+__pycache__/
+.DS_Store
+.idea/

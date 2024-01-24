@@ -1,0 +1,14 @@
+CREATE_TABLE_QUERY = """
+CREATE TABLE IF NOT EXISTS {} ({});
+"""
+
+INSERT_INTO_TABLE_QUERY = """
+INSERT INTO {} ({}) VALUES ({});
+"""
+
+DROP_TABLE_QUERY = """
+drop table {} ;
+"""
+
+CREATE_EXTENSION_UUID = """
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" """

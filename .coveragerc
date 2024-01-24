@@ -1,0 +1,9 @@
+[run]
+source=computation,db_manager,
+omit=
+    */__init__.py
+    */config/*
+    */tests/*
+    */manage.py/*
+    */db_manager/*
+

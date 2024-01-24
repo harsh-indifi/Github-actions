@@ -1,0 +1,31 @@
+name: Push Event Workflow
+
+on:
+  # Triggers the workflow on pull request events only for the main branch
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version:
+          - "3.11"
+    name: Test
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/set-up-python@v4
+
+      - name: Install Dependencies
+        uses: python -m pip install coverage .
+
+      - name: Run tests
+        run: FLASK_ENV=test coverage run -m unittest test.test_suite
+
+
