@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@main
 
       - name: Create PR to Demo
-        if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging'
+        if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging_cep'
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
           gh pr create --base demo --head staging --title "Merge changes from staging to demo: $title"
