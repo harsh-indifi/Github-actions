@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@main
 
       - name: Set up Python
-        uses: actions/set-up-python@v4
+        uses: actions/setup-python@v4
 
       - name: Install Dependencies
         run: python -m pip install coverage .
