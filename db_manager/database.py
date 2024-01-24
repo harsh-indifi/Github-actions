@@ -13,7 +13,6 @@ class DatabaseManager:
             pool_size=current_app.config['POOL_SIZE'], pool_recycle=14400,
             pool_pre_ping=True)
         self.connection = default_conn_pool.connect()
-        print('Connection Established')
 
     def fetchall(self, query):
         """
@@ -59,8 +58,10 @@ class DatabaseManager:
 
     def close_connection(self):
         """
-        Close connection (SQLAlchemy: returns connection to pool for re-using)
+        Close connection
         """
-        self.connection.close()
-        print('Connection Closed')
+        try:
+            self.connection.close()
+        except Exception as e:
+            print(f"Error in close connection: {e}")
 

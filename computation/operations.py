@@ -1,7 +1,7 @@
 import json
 from db_manager.database import DatabaseManager
 from db_manager.query_manager.query import CREATE_EXTENSION_UUID, CREATE_TABLE_QUERY, \
-    INSERT_INTO_TABLE_QUERY
+    INSERT_INTO_TABLE_QUERY, DROP_TABLE_QUERY
 
 
 class Operations:
@@ -30,6 +30,10 @@ class Operations:
     def fetch(self):
         query = 'Select * from applications'
         return self.db_manager.fetchall(query)
+
+    def drop_table(self, table_name):
+        query = DROP_TABLE_QUERY.format(table_name)
+        self.db_manager.drop_table(query)
 
     def close_connection(self):
         self.db_manager.close_connection()
