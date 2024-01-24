@@ -2,6 +2,7 @@ name: Auto PRs from Staging
 
 on:
   pull_request:
+    branches: [ main ]
     types:
       - closed
 
@@ -16,15 +17,12 @@ jobs:
       - name: Check out code
         uses: actions/checkout@main
 
-      - name: Set up GitHub CLI
-        run: echo "registry=https://npm.pkg.github.com/OWNER_OR_ORG_OR_TEAM" >> ~/.npmrc
-
       - name: Create PR to Demo
         if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging_cep'
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
           body=$(gh pr view ${{ github.event.pull_request.number }} --json body -q .body)
-          gh pr create --base demo --head staging_cep --title "Merge changes from staging to demo: $title" --body "$body"
+          gh pr create --base demo --head staging_cep --title "Merge changes from staging to demo: $title" --body "Auto PR from github actions"
 
 
 #      - name: Create PR to Preprod
