@@ -1,0 +1,28 @@
+name: Auto PRs from Staging
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  auto-prs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@main
+
+      - name: Create PR to Demo
+        if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging'
+        run: |
+          title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
+          gh pr create --base demo --head staging --title "Merge changes from staging to demo: $title"
+
+#      - name: Create PR to Preprod
+#        if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging'
+#        run: |
+#          # Use your preferred scripting language to create a PR
+#          # Example: GitHub CLI
+#          title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
+#          gh pr create --base preprod --head staging --title "Merge changes from staging to preprod: $title"
