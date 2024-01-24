@@ -16,6 +16,13 @@ jobs:
       - name: Check out code
         uses: actions/checkout@main
 
+      - name: Debug Information
+        run: |
+          echo "Current Branch: $(git branch)"
+          echo "List of Commits: $(git log --oneline)"
+          echo "List of Remote Branches: $(git branch -r)"
+          echo "GitHub Event: ${{ toJson(github.event) }}"
+
       - name: Set up GitHub CLI
         run: echo "registry=https://npm.pkg.github.com/OWNER_OR_ORG_OR_TEAM" >> ~/.npmrc
 
