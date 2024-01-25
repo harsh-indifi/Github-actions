@@ -33,3 +33,5 @@ jobs:
           pr_url=$(gh pr create --base preprod --head staging_cep --title "Merge changes from staging_cep to preprod: $title" --body "Auto PR from GitHub Actions")
           PR_NUMBER=$(echo $pr_url | awk -F'/' '{print $NF}')
           gh pr merge $PR_NUMBER --auto
+          
+          
