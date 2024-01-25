@@ -21,12 +21,14 @@ jobs:
         if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging_cep'
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
-          pr_number=$(gh pr create --base demo --head staging_cep --title "Merge changes from staging to demo: $title" --body "Auto PR from GitHub Actions" | jq -r '.number')
+          response=$(gh pr create --base demo --head staging_cep --title "Merge changes from staging_cep to demo: $title" --body "Auto PR from GitHub Actions" | jq -r '.number')
+          pr_number=$(echo "$response" | jq -r '.number')
           echo "PR_NUMBER_PREPROD=$pr_number"
 
       - name: Create PR to Preprod
         if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging_cep'
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
-          pr_number=$(gh pr create --base preprod --head staging_cep --title "Merge changes from staging to preprod: $title" --body "Auto PR from GitHub Actions"| jq -r '.number')
+          response=$(gh pr create --base preprod --head staging_cep --title "Merge changes from staging_cep to preprod: $title" --body "Auto PR from GitHub Actions"| jq -r '.number')
+          pr_number=$(echo "$response" | jq -r '.number')
           echo "PR_NUMBER_PREPROD=$pr_number"
