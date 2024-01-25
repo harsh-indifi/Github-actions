@@ -24,7 +24,7 @@ jobs:
           pr_url=$(gh pr create --base demo --head staging_cep --title "Merge changes from staging_cep to demo: $title" --body "Auto PR from GitHub Actions")
           PR_NUMBER=$(echo $pr_url | awk -F'/' '{print $NF}')
           echo "$PR_NUMBER"
-          gh pr merge $PR_NUMBER --merge
+          gh pr merge $PR_NUMBER --merge --auto
 
 #      - name: Create PR to Preprod
 #        if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging_cep'
