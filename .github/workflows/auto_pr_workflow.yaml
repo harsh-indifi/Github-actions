@@ -38,7 +38,6 @@ jobs:
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
           PR_URL=$(gh pr create --base preprod --head staging_cep --title "Merge changes from staging_cep to preprod: $title" --body "Auto PR from GitHub Actions")
-          PR_NUMBER=$(echo $PR_URL | awk -F'/' '{print $NF}')
           echo "$(gh pr view $PR_URL --json mergeable)"
           MERGEABLE=$(gh pr view $PR_URL --json mergeable -q .mergeable)
           echo "$MERGEABLE"
