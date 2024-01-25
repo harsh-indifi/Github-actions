@@ -26,10 +26,10 @@ jobs:
           MERGEABLE=$(gh pr view $PR_NUMBER --json mergeable -q .mergeable)
           echo "$MERGEABLE"
           if [ "$MERGEABLE" == "MERGEABLE" ]; then
-            echo "PR is mergeable. "
+            echo "::error::PR has conflicts."
             gh pr merge $PR_NUMBER --merge
           else
-             echo "PR has conflicts."
+            echo "::error::PR has conflicts."
           fi
 #          if [ "$conflicts" == "null" ]; then
 #            echo "PR has conflicts."
