@@ -28,7 +28,7 @@ jobs:
           if [ "$conflicts" == "null" ]; then
             echo "PR has conflicts."
           else
-            echo "PR is mergeable."
+            echo "PR is mergeable. "
             gh pr merge $PR_NUMBER --merge --auto
           fi
 
