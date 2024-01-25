@@ -24,7 +24,7 @@ jobs:
           pr_url=$(gh pr create --base demo --head staging_cep --title "Merge changes from staging_cep to demo: $title" --body "Auto PR from GitHub Actions")
           PR_NUMBER=$(echo $pr_url | awk -F'/' '{print $NF}')
           echo "$PR_NUMBER"
-          conflicts=$(gh pr check $pr_number --json mergeable -q .mergeable)
+          conflicts=$(gh pr checks $pr_number --json mergeable -q .mergeable)
           if [ "$conflicts" == "null" ]; then
             echo "PR has conflicts."
           else
