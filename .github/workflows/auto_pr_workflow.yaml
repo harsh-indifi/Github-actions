@@ -21,10 +21,14 @@ jobs:
         if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging_cep'
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
-          echo gh pr create --base demo --head staging_cep --title "Merge changes from staging_cep to demo: $title" --body "Auto PR from GitHub Actions"
+          pr_url=$(gh pr create --base demo --head staging_cep --title "Merge changes from staging_cep to demo: $title" --body "Auto PR from GitHub Actions" --json url -q .url)
+          pr_number=$(basename $pr_url)
+          echo "$pr_number"
 
       - name: Create PR to Preprod
         if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging_cep'
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
-          echo gh pr create --base preprod --head staging_cep --title "Merge changes from staging_cep to preprod: $title" --body "Auto PR from GitHub Actions"
+          pr_url=$(gh pr create --base preprod --head staging_cep --title "Merge changes from staging_cep to preprod: $title" --body "Auto PR from GitHub Actions" --json url -q .url)
+          pr_number=$(basename $pr_url)
+          echo "$pr_number"
