@@ -23,10 +23,9 @@ jobs:
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
           pr_url=$(gh pr create --base demo --head staging_cep --title "Merge changes from staging_cep to demo: $title" --body "Auto PR from GitHub Actions")
           PR_NUMBER=$(echo $pr_url | awk -F'/' '{print $NF}')
-          MERGEABLE=$(gh pr view $PR_NUMBER --json mergeable)
+          MERGEABLE=$(gh pr view $PR_NUMBER --json mergeable -q .mergeable)
           echo "$MERGEABLE"
-          echo "$MERGEABLE["mergeable"]"
-          if [ "$MERGEABLE["mergeable"]" == "MERGEABLE" ]; then
+          if [ "$MERGEABLE" == "MERGEABLE" ]; then
             echo "PR is mergeable. "
             gh pr merge $PR_NUMBER --merge
           else
