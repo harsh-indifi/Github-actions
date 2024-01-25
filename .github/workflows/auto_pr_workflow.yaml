@@ -22,16 +22,15 @@ jobs:
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
           PR_URL=$(gh pr create --base demo --head staging_cep --title "Merge changes from staging_cep to demo: $title" --body "Auto PR from GitHub Actions")
-          PR_NUMBER=$(echo $PR_URL | awk -F'/' '{print $NF}')
-          echo "$(gh pr view $PR_NUMBER --json mergeable)"
-          MERGEABLE=$(gh pr view $PR_NUMBER --json mergeable -q .mergeable)
+          echo "$(gh pr view $PR_URL --json mergeable)"
+          MERGEABLE=$(gh pr view $PR_URL --json mergeable -q .mergeable)
           echo "$MERGEABLE"
           if [ "$MERGEABLE" == "CONFLICTING" ]; then
             echo "::error::PR has conflicts."
             exit 1
           else
             echo "PR mergeable."
-            gh pr merge $PR_NUMBER --merge
+            gh pr merge $PR_URL --merge
           fi
 
       - name: Create PR to Preprod
