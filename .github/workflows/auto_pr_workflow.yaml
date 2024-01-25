@@ -22,7 +22,7 @@ jobs:
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
           pr_url=$(gh pr create --base demo --head staging_cep --title "Merge changes from staging_cep to demo: $title" --body "Auto PR from GitHub Actions")
-          PR_NUMBER=$(echo pr_url | awk -F'/' '{print $NF}')
+          PR_NUMBER=$(echo $pr_url | awk -F'/' '{print $NF}')
           echo "$PR_NUMBER"
 
       - name: Create PR to Preprod
@@ -30,5 +30,5 @@ jobs:
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
           pr_url=$(gh pr create --base preprod --head staging_cep --title "Merge changes from staging_cep to preprod: $title" --body "Auto PR from GitHub Actions")
-          PR_NUMBER=$(echo pr_url | awk -F'/' '{print $NF}')
+          PR_NUMBER=$(echo $pr_url | awk -F'/' '{print $NF}')
           echo "$PR_NUMBER"
