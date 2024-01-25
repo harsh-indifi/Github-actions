@@ -49,4 +49,5 @@ jobs:
           else
             echo "PR mergeable."
             gh pr merge $PR_NUMBER --merge
+          fi
           
