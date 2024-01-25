@@ -31,7 +31,7 @@ class OperationView(MethodView):
 class CalculationView(MethodView):
 
     def get(self):
-        result = Calculation().add(9, 10)
+        result = Calculation().add(8, 10)
         response_obj = {'result': result, 'success': True}
         response = json.loads(json.dumps(response_obj, cls=MyEncoder),
                               parse_float=lambda x: round(float(x), 4))
