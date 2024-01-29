@@ -33,7 +33,7 @@ jobs:
             gh pr merge $PR_URL --merge
           fi
 
-      - name: Create PR to Preprod
+      - name: Create PR to Dad_Staging
         if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging_cep'
         run: |
           title=$(gh pr view ${{ github.event.pull_request.number }} --json title -q .title)
@@ -48,4 +48,3 @@ jobs:
             echo "PR mergeable."
             gh pr merge $PR_URL --merge
           fi
-          
