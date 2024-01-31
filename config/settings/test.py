@@ -3,7 +3,7 @@ DATABASES = {
     'default': {
         'NAME': 'myTestDb',
         'USER': 'testDbUser',
-        'PASSWORD': '1234',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '5432',
         'TEST': {
