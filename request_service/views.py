@@ -1,4 +1,5 @@
 import json
+import pickle
 
 from flask.views import MethodView
 from flask import jsonify
@@ -8,6 +9,7 @@ from computation.utils import MyEncoder
 from db_manager.query_manager.columns import APPLICATIONS_TABLE, \
     APPLICATIONS_TABLE_COLUMNS
 from db_manager.query_manager.settings import applications_data
+from extensions import cache
 
 
 class Test(MethodView):
@@ -31,7 +33,13 @@ class OperationView(MethodView):
 class CalculationView(MethodView):
 
     def get(self):
-        result = Calculation().add(5, 10)
+        key_name = "check"
+        if cache.get(key_name) is None:
+            result = Calculation().add(5, 10)
+            pickled_object = pickle.dumps(result)
+            cache.set(key_name, pickled_object, timeout=1728000)
+        else:
+            result = pickle.loads(cache.get(key_name))
         response_obj = {'result': result, 'success': True}
         response = json.loads(json.dumps(response_obj, cls=MyEncoder),
                               parse_float=lambda x: round(float(x), 4))
