@@ -1,4 +1,4 @@
-name: Push Event Workflow
+name: Unit Tests Workflow
 
 on:
   # Triggers the workflow on pull request events only for the main branch
