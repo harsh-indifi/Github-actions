@@ -1,8 +1,8 @@
 DEBUG = True
 DATABASES = {
     'default': {
-        'NAME': 'mytestdb',
-        'USER': 'testdbuser',
+        'NAME': 'myTestDb',
+        'USER': 'testDbUser',
         'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '5432',
