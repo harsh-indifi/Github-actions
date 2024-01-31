@@ -2,6 +2,8 @@ blinker==1.7.0
 click==8.1.7
 coverage==7.4.0
 Flask==3.0.0
+Flask-Caching==2.1.0
+redis==5.0.1
 greenlet==3.0.1
 numpy==1.26.2
 pandas==1.5.3
