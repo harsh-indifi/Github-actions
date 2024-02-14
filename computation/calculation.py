@@ -2,7 +2,7 @@
 class Calculation:
 
     def __init__(self):
-        self.relaxation = 0
+        self.relaxation = 1
 
     # Add method
     def add(self, x, y):
