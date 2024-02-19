@@ -66,7 +66,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         if: github.event_name == 'pull_request'
         with:
-          token: ${{ secrets.GitHubToken2 }}
+          GITHUB_TOKEN: ${{ secrets.GitHubToken2 }}
           recreate: true
           path: code-coverage-results.md
 
