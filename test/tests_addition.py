@@ -21,3 +21,7 @@ class AdditionTest(unittest.TestCase):
     def test_addition(self):
         result = Calculation().add(5, 10)
         self.assertEqual(result, 15)
+
+    def test_addition_2(self):
+        result = Calculation().add(5, 10)
+        self.assertEqual(result, 15)
