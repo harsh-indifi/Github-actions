@@ -16,7 +16,7 @@ jobs:
     name: Unit Tests
     runs-on: ${{ matrix.os }}
     env:
-      GH_TOKEN: ${{ secrets.GITHUBTOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUBTOKEN2 }}
     services:
       postgres:
         image: postgres:latest
@@ -66,7 +66,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         if: github.event_name == 'pull_request'
         with:
-          token: ${{ secrets.GITHUBTOKEN }}
+          token: ${{ secrets.GitHubToken2 }}
           recreate: true
           path: code-coverage-results.md
 
