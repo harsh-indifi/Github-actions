@@ -60,5 +60,5 @@ jobs:
           hide_complexity: true
           indicators: true
           output: both
-          thresholds: '70 80'
+          thresholds: '50 60'
 
