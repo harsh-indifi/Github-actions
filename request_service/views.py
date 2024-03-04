@@ -4,11 +4,11 @@ import pickle
 from flask.views import MethodView
 from flask import jsonify
 from computation.calculation import Calculation
-from computation.operations import Operations
+from computation.operations import Operations, OperationsOnBankDb
 from computation.utils import MyEncoder
 from db_manager.query_manager.columns import APPLICATIONS_TABLE, \
     APPLICATIONS_TABLE_COLUMNS
-from db_manager.query_manager.settings import applications_data
+from db_manager.query_manager.settings import applications_data, applications_data_2
 from extensions import cache
 
 
@@ -24,10 +24,19 @@ class OperationView(MethodView):
         operation.create_extension()
         operation.create_table(APPLICATIONS_TABLE, APPLICATIONS_TABLE_COLUMNS)
         operation.insert_into_table(APPLICATIONS_TABLE, applications_data)
-        result = operation.fetch()
+        result_default = operation.fetch()
         operation.drop_table(APPLICATIONS_TABLE)
         operation.close_connection()
-        return jsonify({'success': True, 'requestId': result[0]['requestId']})
+
+        operation_bank = OperationsOnBankDb()
+        operation_bank.create_extension()
+        operation_bank.create_table(APPLICATIONS_TABLE, APPLICATIONS_TABLE_COLUMNS)
+        operation_bank.insert_into_table(APPLICATIONS_TABLE, applications_data_2)
+        result_bank_db = operation_bank.fetch()
+        operation_bank.drop_table(APPLICATIONS_TABLE)
+        operation_bank.close_connection()
+        return jsonify({'success': True, 'requestId default': result_default[0][
+            'duration'], 'requestId bank': result_bank_db[0]['duration']})
 
 
 class CalculationView(MethodView):

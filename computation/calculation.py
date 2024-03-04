@@ -8,5 +8,6 @@ class Calculation:
     def add(self, x, y):
         return x + y + self.relaxation
 
+    # Subtraction method
     def subtract(self, x, y):
         return x - y + self.relaxation
