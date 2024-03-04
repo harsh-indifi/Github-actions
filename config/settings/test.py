@@ -3,8 +3,18 @@ REDIS_PORT = '6379'
 
 DATABASES = {
     'default': {
-        'NAME': 'myTestDb',
-        'USER': 'testDbUser',
+        'NAME': 'mytestdb',
+        'USER': 'testdbuser',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'TEST': {
+            'DEPENDENCIES': []
+        }
+    },
+    'bank_statement': {
+        'NAME': 'banktestdb',
+        'USER': 'testdbuser',
         'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '5432',
