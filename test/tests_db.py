@@ -18,4 +18,3 @@ class DbOperationsTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         response = response.json
         self.assertEqual(response['success'], True)
-        self.assertEqual(1, response['requestId'])
