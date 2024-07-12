@@ -48,3 +48,6 @@ jobs:
             echo "PR mergeable."
             gh pr merge $PR_URL --merge
           fi
+
+      - name: Collect Workflow Telemetry
+        uses: catchpoint/workflow-telemetry-action@v2
