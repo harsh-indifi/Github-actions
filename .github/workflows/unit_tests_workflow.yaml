@@ -81,3 +81,6 @@ jobs:
           recreate: true
           path: code-coverage-results.md
 
+      - name: Collect Workflow Telemetry
+        uses: catchpoint/workflow-telemetry-action@v2
+
