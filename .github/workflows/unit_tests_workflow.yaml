@@ -4,6 +4,8 @@ on:
   # Triggers the workflow on pull request events only for the main branch
   pull_request:
     branches: [ main ]
+permissions:
+  pull-requests: write
 
 jobs:
   run-tests:
@@ -80,4 +82,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GitHubToken2 }}
           recreate: true
           path: code-coverage-results.md
+
+      - name: Collect Workflow Telemetry
+        uses: catchpoint/workflow-telemetry-action@v2
 
