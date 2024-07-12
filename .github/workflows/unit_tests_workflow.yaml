@@ -4,6 +4,8 @@ on:
   # Triggers the workflow on pull request events only for the main branch
   pull_request:
     branches: [ main ]
+permissions:
+  pull-requests: write
 
 jobs:
   run-tests:
