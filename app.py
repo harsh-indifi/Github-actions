@@ -2,7 +2,8 @@ from flask import Flask
 from config.urls import MainBP
 import os
 
-from extensions import cache
+from db_manager.settings import get_conn_uri
+from extensions import cache, db
 
 
 def create_app():
@@ -13,6 +14,10 @@ def create_app():
     # Set config for cache
     cache.init_app(app, config=app.config['CACHES']['default'])
     app.url_map.strict_slashes = False
+    default_uri, bank_statement_uri = get_conn_uri(app.config)
+    app.config['SQLALCHEMY_DATABASE_URI'] = default_uri
+    app.config['SQLALCHEMY_BINDS']['bank_statement_db'] = bank_statement_uri
+    db.init_app(app)
     app.register_blueprint(MainBP)
     return app
 
