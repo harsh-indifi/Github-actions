@@ -42,7 +42,6 @@ jobs:
 #          cache: 'pip' # caching pip dependencies
 
       - name: Cache dependencies
-        id: cache
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
