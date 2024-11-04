@@ -36,12 +36,13 @@ jobs:
         uses: actions/checkout@main
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5.2.0
         with:
           python-version: ${{ matrix.python-version }}
 #          cache: 'pip' # caching pip dependencies
 
-      - uses: actions/cache@v1
+      - name: Cache dependencies
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
