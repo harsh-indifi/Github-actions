@@ -39,8 +39,8 @@ jobs:
         uses: actions/setup-python@v5.2.0
         with:
           python-version: ${{ matrix.python-version }}
-# cache: 'pip' # caching pip dependencies
 
+# cache: 'pip' caching pip dependencies
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v4
