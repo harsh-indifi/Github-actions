@@ -1,9 +1,9 @@
-name: Unit Tests Workflow
+name: Merge Workflow
 
 on:
-  # Triggers the workflow on pull request events only for the main branch
-  pull_request:
-    branches: [ main ]
+  # Triggers the workflow on merge on staging_cep
+  push:
+    branches: [ staging_cep ]
 
 permissions:
   pull-requests: write
