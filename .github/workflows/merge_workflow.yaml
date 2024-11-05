@@ -5,6 +5,9 @@ on:
   push:
     branches: [ staging_cep ]
 
+permissions:
+  pull-requests: write
+
 jobs:
   run-tests:
     strategy:
